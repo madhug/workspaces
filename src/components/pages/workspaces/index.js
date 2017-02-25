@@ -22,7 +22,7 @@ const workspaceData = [
     {
         uid: '2',
         name: 'Cute Papillions',
-        owner: 'Julie Tang',
+        owner: 'julie tang',
         isFavorite: false,
         isPublic: false,
         modified: "2016-07-02T04:23:27.000Z"

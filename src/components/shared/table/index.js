@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import moment from 'moment';
 import './table.css';
 
 const ico_favorite = `${process.env.PUBLIC_URL}/images/svg/ico_favorite.svg`;
@@ -43,7 +44,7 @@ class Table extends Component {
         <tr key={uid} className='table-rows'>
             <td>{ this.renderWorkspaceDetails(data) }</td>
             <td><p className="label">{ isPublic? 'public' : 'private' }</p></td>
-            <td>{ modified }</td>
+            <td><p className="label">{ moment(modified).format('MM/DD/YY') }</p></td>
         </tr>
     )
   }

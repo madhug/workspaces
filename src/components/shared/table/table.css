@@ -74,6 +74,7 @@ table {
     opacity: 0.85;
     font-family: 'Source Sans Pro';
     margin: 0;
+    text-transform: capitalize;
 }
 
 .table-rows td {
@@ -93,8 +94,20 @@ table {
 
 /** Styles for mobile **/
 
-@media (max-width: 800px) {
+@media (max-width: 735px) {
     .table-header {
         display: none;
+    }
+
+    .table-data {
+        border-top: 1px solid #48535c;
+    }
+    .table-rows {
+        display: flex;
+        flex-direction: column;
+        padding: 15px;
+    }
+    .table-rows .label {
+        max-width: 250px;
     }
 }

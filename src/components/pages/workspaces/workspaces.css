@@ -25,7 +25,7 @@ p {
     font-size: 36pt;
     font-family: 'Source Sans Pro';
     color: #112128;
-    opacity: 0.85%;
+    opacity: 0.85;
     text-transform: uppercase;
     letter-spacing: 5px;
     margin: 0;
@@ -80,17 +80,29 @@ p {
 
 /** Styles for mobile **/
 
-@media (max-width: 800px) {
+@media (max-width: 660px) {
     .header {
         justify-content: center;
     }
-    .workspaces-container {
+
+    .page-header-text {
+        font-size: 26pt;
         padding: 20px;
+    }
+    .actions {
+        padding: 15px;
+    }
+    .workspaces-container {
+        padding: 0;
     }
     .actions {
         flex-direction: column-reverse;
         margin-top: 5px; 
         margin-left: 5px;
+    }
+    .label{
+        text-align: left;
+        font-size: 20pt;
     }
     .icon-button-label {
         display: inline;
