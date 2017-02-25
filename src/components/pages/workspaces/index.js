@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './workspaces.css';
-import Table from 'src/components/shared/table';
+import Table from '../../shared/table';
 
 const ico_newworkspace = `${process.env.PUBLIC_URL}/images/svg/ico_newworkspace.svg`;
 
