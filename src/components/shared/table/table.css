@@ -34,6 +34,7 @@ table {
 
 .table-rows {
     border-bottom: 1px solid #48535c;
+    position: relative;
 }
 
 .table-rows .details {
@@ -110,5 +111,11 @@ table {
     }
     .table-rows .label {
         max-width: 250px;
+    }
+
+    .table-rows td:last-child {
+        position: absolute;
+        top: 65%;
+        right: 5%;
     }
 }
