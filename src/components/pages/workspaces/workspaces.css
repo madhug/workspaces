@@ -107,4 +107,9 @@ p {
     .icon-button-label {
         display: inline;
     }
+    .sort {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import Dropdown from 'react-dropdown';
 import './workspaces.css';
+import './dropdown.css';
 import Table from '../../shared/table';
 
 const ico_newworkspace = `${process.env.PUBLIC_URL}/images/svg/ico_newworkspace.svg`;
@@ -29,6 +31,14 @@ const workspaceData = [
     }, 
 ];
 
+const sortFields = [
+    {value: 'favorite', label: 'Favorites'},
+    {value: 'name', label: 'Name'},
+    {value: 'owner', label: 'Owner'},
+    {value: 'modified', label: 'Modified'}
+]
+
+
 class Workspaces extends Component {
     // TODO: Add proptypes
   render() {
@@ -41,8 +51,8 @@ class Workspaces extends Component {
             <div className="actions">
                 <div className="sort">
                     <p className="label">Sort By</p>
-                    <div>Favorites</div>
-                </div>
+                    <Dropdown options={sortFields} placeholder="Select" />
+                 </div>
                 <button className="icon-button">
                     <p className='icon-button-label label'>New Workspace</p>
                     <img className="icon" alt='add new workspace' src={ico_newworkspace}></img>
