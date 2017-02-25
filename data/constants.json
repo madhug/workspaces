@@ -5,9 +5,10 @@
         "modified"
     ],
     "sortFields": [
-        {"value": "favorite", "label": "Favorites"},
+        {"value": "isFavorite", "label": "Favorites"},
         {"value": "name", "label": "Name"},
         {"value": "owner", "label": "Owner"},
+        {"value": "isPublic", "label": "Permission"},
         {"value": "modified", "label": "Modified"}
     ]
 }

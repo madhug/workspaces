@@ -1,4 +1,4 @@
-import { findIndex, cloneDeep } from 'lodash';
+import { findIndex, cloneDeep, orderBy } from 'lodash';
 
 import data from '../../data/workspaces.json';
 import constants from '../../data/constants.json';
@@ -6,6 +6,14 @@ import constants from '../../data/constants.json';
 export const SORT_DATA = 'SORT_DATA';
 export const ADD_WORKSPACE = 'ADD_WORKSPACE';
 export const TOGGLE_FAVORITE = 'TOGGLE_FAVORITE';
+
+function sortByField(data, field) {
+    if(field.value !== 'name') {
+        return orderBy(data, [field.value, 'name'], ['desc', 'asc']);
+    } else {
+        return orderBy(data, ['name'], ['asc']);
+    }
+}
 
 const intialState = () => {
     const transformedData = data.map( d => {
@@ -20,7 +28,7 @@ const intialState = () => {
     })
     return {
         workspaceData: transformedData,
-        selectedSortField: {value: 'favorite', label: 'Favorites'},
+        selectedSortField: constants.sortFields[0],
         sortFields: constants.sortFields,
         tableHeaders: constants.tableHeaders,
         showComingSoon: false, 
@@ -28,7 +36,10 @@ const intialState = () => {
 } 
 
 function handleSortData(state, action) {
-    return state;
+    const newState = cloneDeep(state);
+    newState.workspaceData = sortByField(newState.workspaceData, action.field); 
+    newState.selectedSortField = action.field;
+    return newState;
 }
 
 function handleAddWorkspace(state, action) {

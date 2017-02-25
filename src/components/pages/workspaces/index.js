@@ -68,7 +68,7 @@ class Workspaces extends Component {
 
   render() {
     const { workspaceData, selectedSortField, 
-        sortFields, tableHeaders, onFavorite } = this.props;
+        sortFields, tableHeaders, onFavorite, onSortFieldSelect } = this.props;
     return (
       <div className="page-container">
         <div className="workspaces-container">
@@ -81,7 +81,8 @@ class Workspaces extends Component {
                     <Dropdown 
                         options={sortFields} 
                         value={selectedSortField} 
-                        placeholder="Select" />
+                        placeholder="Select" 
+                        onChange={onSortFieldSelect} />
                  </div>
                 <button className="icon-button">
                     <p className='icon-button-label label'>New Workspace</p>
