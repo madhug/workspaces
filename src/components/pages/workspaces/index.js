@@ -1,47 +1,68 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
 import Dropdown from 'react-dropdown';
+import {
+    sortData, 
+    addWorkspace,
+    addFavorite,
+    removeFavorite
+} from '../../../reducers/workspaces.js';
 import './workspaces.css';
 import './dropdown.css';
 import Table from '../../shared/table';
 
 const ico_newworkspace = `${process.env.PUBLIC_URL}/images/svg/ico_newworkspace.svg`;
 
-const tableHeaders = [
-    'workspace name',
-    'permission',
-    'modified'
-];
+function mapStoreToProps(store) {
+    return { 
+        workspaceData: store.workspaces.worksspaceData,
+        selectedSortField: store.workspaces.selectedSortField,
+        showComingSoon: store.workspaces.showComingSoon, 
+        tableHeaders: store.workspaces.tableHeaders,
+        sortFields: store.workspaces.sortFields
+    };
+}
 
-const workspaceData = [
-    {
-        uid: '1',
-        name: 'Now this is what I call a long name and title',
-        owner: 'Julie Tang',
-        isFavorite: true,
-        isPublic: true,
-        modified: "2016-07-02T04:23:27.000Z"
-    }, 
-    {
-        uid: '2',
-        name: 'Cute Papillions',
-        owner: 'julie tang',
-        isFavorite: false,
-        isPublic: false,
-        modified: "2016-07-02T04:23:27.000Z"
-    }, 
-];
-
-const sortFields = [
-    {value: 'favorite', label: 'Favorites'},
-    {value: 'name', label: 'Name'},
-    {value: 'owner', label: 'Owner'},
-    {value: 'modified', label: 'Modified'}
-]
-
+function mapDispatchToProps(dispatch, props) {
+    return {
+        onSortFieldSelect: (field) => { dispatch(sortData(field))},
+        onFavorite: () => {}
+    }
+}
 
 class Workspaces extends Component {
-    // TODO: Add proptypes
+  static propTypes = {
+    tableHeaders: PropTypes.arrayOf(PropTypes.string),
+    workspaceData: PropTypes.arrayOf(PropTypes.object(
+        PropTypes.shape: {
+        uid: PropTypes.string, 
+        name: PropTypes.string, 
+        owner: PropTypes.string, 
+        isFavorite: PropTypes.bool,
+        isPublic: PropTypes.bool,
+        modified: PropTypes.string
+        }
+    )),
+    selectedSortField: PropTypes.object(
+        PropTypes.shape: {
+            value: PropTypes.string,
+            label: PropTypes.string,
+        }
+    ),
+    sortFields: PropTypes.arrayOf(
+        PropTypes.object(
+            PropTypes.shape: {
+                value: PropTypes.string,
+                label: PropTypes.string,
+            }
+        )
+    ),
+    onSortFieldSelect: PropTypes.func,
+    onFavorite: PropTypes.func
+  }
+
   render() {
+    const { workspaceData, selectedSortField, sortFields, tableHeaders } = this.props;
     return (
       <div className="page-container">
         <div className="workspaces-container">
@@ -51,7 +72,10 @@ class Workspaces extends Component {
             <div className="actions">
                 <div className="sort">
                     <p className="label">Sort By</p>
-                    <Dropdown options={sortFields} placeholder="Select" />
+                    <Dropdown 
+                        options={sortFields} 
+                        value={selectedSortField} 
+                        placeholder="Select" />
                  </div>
                 <button className="icon-button">
                     <p className='icon-button-label label'>New Workspace</p>
@@ -71,4 +95,4 @@ class Workspaces extends Component {
   }
 }
 
-export default Workspaces;
+export default connect(mapStoreToProps, mapDispatchToProps)(Workspaces);

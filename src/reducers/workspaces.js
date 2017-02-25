@@ -1,16 +1,27 @@
 import data from '../../data/workspaces.json';
+import constants from '../../data/constants.json';
 
 export const SORT_DATA = 'SORT_DATA';
 export const ADD_WORKSPACE = 'ADD_WORKSPACE';
-export const ADD_FAVORITE = 'ADD_FAVORITE';
-export const REMOVE_FAVORITE = 'REMOVE_FAVORITE';
-
+export const TOGGLE_FAVORITE = 'TOGGLE_FAVORITE';
 
 const intialState = () => {
+    const transformedData = data.map( d => {
+        return {
+            uid: d.uid,
+            name: d.name.toLowerCase(),
+            owner: `${d.workspace_owner.first_name.toLowerCase()} ${d.workspace_owner.last_name.toLowerCase()}`,
+            isFavorite: d.favorite > 0,
+            isPublic: d.public,
+            modified: d.updated_at
+        }
+    })
     return {
-        sortField: null,
+        worksspaceData: transformedData,
+        selectedSortField: {value: 'favorite', label: 'Favorites'},
+        sortFields: constants.sortFields,
+        tableHeaders: constants.tableHeaders,
         showComingSoon: false, 
-        ...data
     }
 } 
 
@@ -22,11 +33,8 @@ function handleAddWorkspace(state, action) {
     return state;
 }
 
-function handleAddFavorite(state, action) {
-    return state;
-}
+function handleToggleFavorite(state, action) {
 
-function handleRemoveFavorite(state, action) {
     return state;
 }
 
@@ -36,10 +44,8 @@ export default function workspaces(state=intialState(), action={}) {
             return handleSortData(state, action);
         case ADD_WORKSPACE:
             return handleAddWorkspace(state, action);
-        case ADD_FAVORITE:
-            return handleAddFavorite(state, action);
-        case REMOVE_FAVORITE:
-            return handleRemoveFavorite(state, action);
+        case TOGGLE_FAVORITE:
+            return handleToggleFavorite(state, action);
         default: return state;
     }
 }
@@ -58,16 +64,9 @@ export function addWorkspace() {
     }
 }
 
-export function addFavorite(id) {
+export function toggleFavorite(uid) {
     return {
-        type: ADD_FAVORITE,
-        id
-    }
-}
-
-export function removeFavorite(id) {
-    return {
-        type: REMOVE_FAVORITE,
-        id
+        type: TOGGLE_FAVORITE,
+        uid
     }
 }

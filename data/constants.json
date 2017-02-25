@@ -1,0 +1,13 @@
+{
+    "tableHeaders": [
+        "workspace name",
+        "permission",
+        "modified"
+    ],
+    "sortFields": [
+        {"value": "favorite", "label": "Favorites"},
+        {"value": "name", "label": "Name"},
+        {"value": "owner", "label": "Owner"},
+        {"value": "modified", "label": "Modified"}
+    ]
+}
