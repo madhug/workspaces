@@ -1,11 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Dropdown from 'react-dropdown';
+import deepEqual from 'deep-equal';
 import {
     sortData, 
     addWorkspace,
-    addFavorite,
-    removeFavorite
+    toggleFavorite,
 } from '../../../reducers/workspaces.js';
 import './workspaces.css';
 import './dropdown.css';
@@ -15,7 +15,7 @@ const ico_newworkspace = `${process.env.PUBLIC_URL}/images/svg/ico_newworkspace.
 
 function mapStoreToProps(store) {
     return { 
-        workspaceData: store.workspaces.worksspaceData,
+        workspaceData: store.workspaces.workspaceData,
         selectedSortField: store.workspaces.selectedSortField,
         showComingSoon: store.workspaces.showComingSoon, 
         tableHeaders: store.workspaces.tableHeaders,
@@ -25,10 +25,15 @@ function mapStoreToProps(store) {
 
 function mapDispatchToProps(dispatch, props) {
     return {
-        onSortFieldSelect: (field) => { dispatch(sortData(field))},
-        onFavorite: () => {}
+        onSortFieldSelect: (field) => { dispatch(sortData(field)) },
+        onFavorite: (uid) => { dispatch(toggleFavorite(uid)) }
     }
 }
+
+function shouldComponentUpdate(nextProps, nextState) {
+    return !deepEqual(this.state.props, nextState.props);
+}
+
 
 class Workspaces extends Component {
   static propTypes = {
@@ -62,7 +67,8 @@ class Workspaces extends Component {
   }
 
   render() {
-    const { workspaceData, selectedSortField, sortFields, tableHeaders } = this.props;
+    const { workspaceData, selectedSortField, 
+        sortFields, tableHeaders, onFavorite } = this.props;
     return (
       <div className="page-container">
         <div className="workspaces-container">
@@ -86,7 +92,7 @@ class Workspaces extends Component {
                 <Table 
                     tableHeaders={tableHeaders}
                     workspaceData={workspaceData}
-                    onFavorite={(uid) => {console.log(uid)}}
+                    onFavorite={onFavorite}
                 />
             </div>
         </div>

@@ -1,3 +1,5 @@
+import { findIndex, cloneDeep } from 'lodash';
+
 import data from '../../data/workspaces.json';
 import constants from '../../data/constants.json';
 
@@ -11,13 +13,13 @@ const intialState = () => {
             uid: d.uid,
             name: d.name.toLowerCase(),
             owner: `${d.workspace_owner.first_name.toLowerCase()} ${d.workspace_owner.last_name.toLowerCase()}`,
-            isFavorite: d.favorite > 0,
+            isFavorite: !!d.favorite,
             isPublic: d.public,
             modified: d.updated_at
         }
     })
     return {
-        worksspaceData: transformedData,
+        workspaceData: transformedData,
         selectedSortField: {value: 'favorite', label: 'Favorites'},
         sortFields: constants.sortFields,
         tableHeaders: constants.tableHeaders,
@@ -34,8 +36,10 @@ function handleAddWorkspace(state, action) {
 }
 
 function handleToggleFavorite(state, action) {
-
-    return state;
+    const newState = cloneDeep(state);
+    const idx = findIndex(newState.workspaceData, (d) => {return d.uid === action.uid} );
+    newState.workspaceData[idx].isFavorite = !newState.workspaceData[idx].isFavorite;
+    return newState;
 }
 
 export default function workspaces(state=intialState(), action={}) {
