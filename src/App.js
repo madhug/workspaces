@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
+import Workspaces from './components/pages/workspaces';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          <h2>Workspaces</h2>
-        </div>
+        <Workspaces />
       </div>
     );
   }

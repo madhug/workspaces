@@ -4,7 +4,7 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { Provider } from 'react-redux';
-import App from './App';
+import Workspaces from './components/pages/workspaces';
 import rootReducer from './rootReducer';
 import './index.css';
 
@@ -17,7 +17,7 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+      <Workspaces />
   </Provider>,
   document.getElementById('root')
 );
