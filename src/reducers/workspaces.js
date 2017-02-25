@@ -4,7 +4,6 @@ import data from '../../data/workspaces.json';
 import constants from '../../data/constants.json';
 
 export const SORT_DATA = 'SORT_DATA';
-export const ADD_WORKSPACE = 'ADD_WORKSPACE';
 export const TOGGLE_FAVORITE = 'TOGGLE_FAVORITE';
 
 function sortByField(data, field) {
@@ -57,8 +56,6 @@ export default function workspaces(state=intialState(), action={}) {
     switch(action.type) {
         case SORT_DATA:
             return handleSortData(state, action);
-        case ADD_WORKSPACE:
-            return handleAddWorkspace(state, action);
         case TOGGLE_FAVORITE:
             return handleToggleFavorite(state, action);
         default: return state;
@@ -73,11 +70,6 @@ export function sortData(field) {
     }
 }
 
-export function addWorkspace() {
-    return {
-        type: ADD_WORKSPACE,
-    }
-}
 
 export function toggleFavorite(uid) {
     return {

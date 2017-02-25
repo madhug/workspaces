@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Dropdown from 'react-dropdown';
+import ReactTooltip from 'react-tooltip';
 import deepEqual from 'deep-equal';
 import {
     sortData, 
-    addWorkspace,
     toggleFavorite,
 } from '../../../reducers/workspaces.js';
 import './workspaces.css';
@@ -17,7 +17,6 @@ function mapStoreToProps(store) {
     return { 
         workspaceData: store.workspaces.workspaceData,
         selectedSortField: store.workspaces.selectedSortField,
-        showComingSoon: store.workspaces.showComingSoon, 
         tableHeaders: store.workspaces.tableHeaders,
         sortFields: store.workspaces.sortFields
     };
@@ -84,10 +83,13 @@ class Workspaces extends Component {
                         placeholder="Select" 
                         onChange={onSortFieldSelect} />
                  </div>
-                <button className="icon-button">
+                <button className="icon-button" data-tip="React-tooltip">
                     <p className='icon-button-label label'>New Workspace</p>
                     <img className="icon" alt='add new workspace' src={ico_newworkspace}></img>
                 </button>
+                <ReactTooltip place="top" type="info" effect="solid">
+                    <span>This feature is not yet implemented</span>
+                </ReactTooltip>
             </div>
             <div className="table">
                 <Table 

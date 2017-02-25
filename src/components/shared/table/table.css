@@ -90,6 +90,7 @@ table {
     width: 25px;
     margin-left: 0;
     margin-right: 15px;
+    cursor: pointer;
 }
 
 /** Styles for mobile **/
