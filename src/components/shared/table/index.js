@@ -40,9 +40,9 @@ class Table extends Component {
   renderRow(data) {
     const { uid, isPublic, modified } = data;
     return (
-        <tr key={uid}>
+        <tr key={uid} className='table-rows'>
             <td>{ this.renderWorkspaceDetails(data) }</td>
-            <td>{ isPublic? 'public' : 'private' }</td>
+            <td><p className="label">{ isPublic? 'public' : 'private' }</p></td>
             <td>{ modified }</td>
         </tr>
     )
@@ -62,13 +62,13 @@ class Table extends Component {
                     )
                 }) }
             </tr>
-            <tr className='table-rows'> 
-                {
-                    workspaceData.map( d => {
-                        return this.renderRow(d);
-                    })
-                }
-            </tr>
+
+            {
+                workspaceData.map( d => {
+                    return this.renderRow(d);
+                })
+            }
+
         </table>
       </div>
     );

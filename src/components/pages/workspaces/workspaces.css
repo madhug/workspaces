@@ -7,7 +7,7 @@ p {
 
 .page-container {
     margin: auto;
-    max-width: 800px;
+    max-width: 1200px;
     background: #FCFCFC;
 }
 
@@ -70,7 +70,7 @@ p {
 
 
 .label {
-    font-size: 16pt;
+    font-size: 24pt;
     text-transform: uppercase;
     color: #112128;
     opacity: 0.85;
@@ -80,7 +80,7 @@ p {
 
 /** Styles for mobile **/
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
     .header {
         justify-content: center;
     }
