@@ -26,7 +26,7 @@ class Table extends Component {
       const { uid, name, owner, isFavorite } = data;
       const { onFavorite } = this.props;
       return (
-          <div className="details">
+          <div className="details test">
               <img src={isFavorite ? ico_favorite : ico_unfavorite} 
                 className="icon" 
                 onClick={onFavorite.bind(null, uid)}/>
