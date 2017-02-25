@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+
+.table-data {
+    margin-top: 40px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-header {
+    border-bottom: 2px #48535c solid;
+}
+
+.table-header th {
+    color: #48535c;
+    font-weight: 100;
+    font-family: 'Source Sans Pro';
+    letter-spacing: 2px;
+}
+
+.table-header th:first-child {
+    text-align: left;
+}
+
+.table-header th:last-child {
+    text-align: left;
+}
+
+/** Styles for mobile **/
+
+@media (max-width: 600px) {
+    .table-header {
+        display: none;
+    }
+}
