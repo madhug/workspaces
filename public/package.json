@@ -1,0 +1,9 @@
+
+{
+  "name": "src",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "public": "file:../public"
+  }
+}

@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+
+p {
+    margin-top: 5pt;
+    margin-bottom: 5pt;
+}
+
+.page-container {
+    margin: auto;
+    max-width: 800px;
+    background: #FCFCFC;
+}
+
+.workspaces-container {
+    padding: 30px 20px;
+    background: #FFF;
+}
+
+.header {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.page-header-text {
+    font-size: 36pt;
+    font-family: 'Source Sans Pro';
+    color: #112128;
+    opacity: 0.85%;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    margin: 0;
+}
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px; 
+}
+
+.sort {
+    display: flex;
+    align-items: center;
+}
+
+.icon-button, .icon-button:focus {
+    border: none;
+    background: none;
+    outline: none;
+    display: flex;
+    align-items: center;
+    padding: 2px 0;
+    transform: scale(1, 1);
+    transition: scale 0.05s ease-in-out;
+}
+.icon-button:hover {
+    cursor: pointer;
+    transform: scale(1.05, 1.05);
+    transition: scale 0.05s ease-in-out;
+}
+
+.icon {
+    margin-left: 5pt;
+    height: 30px;
+    width: 30px;
+}
+
+.icon-button-label {
+    display: none;
+}
+
+
+.list {
+
+}
+
+.label {
+    font-size: 16pt;
+    text-transform: uppercase;
+    color: #112128;
+    opacity: 0.85;
+    margin-right: 10px;
+}
+
+/** Styles for mobile **/
+
+@media (max-width: 600px) {
+    .header {
+        justify-content: center;
+    }
+    .workspaces-container {
+        padding: 20px;
+    }
+    .actions {
+        flex-direction: column-reverse;
+        margin-top: 5px; 
+        margin-left: 5px;
+    }
+    .icon-button-label {
+        display: inline;
+    }
+}
